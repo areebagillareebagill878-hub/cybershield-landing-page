@@ -1,0 +1,435 @@
+/* =================================
+   1. CSS DESIGN TOKENS
+================================= */
+:root {
+    color-scheme: dark;
+
+    --color-bg: #08111f;
+    --color-surface: #101e30;
+    --color-surface-light: #172940;
+    --color-text: #f3f7ff;
+    --color-muted: #a7b6c9;
+    --color-primary: #7cf7b0;
+    --color-primary-dark: #35d98b;
+    --color-border: #263b52;
+
+    --font-body: Arial, Helvetica, sans-serif;
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.5rem;
+    --space-4: 2rem;
+    --space-5: 3rem;
+    --space-6: 5rem;
+
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+
+    --shadow-card: 0 1rem 3rem rgb(0 0 0 / 20%);
+    --container-width: 1120px;
+}
+
+/* =================================
+   2. BASIC RESET
+================================= */
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5rem;
+}
+
+body {
+    margin: 0;
+    font-family: var(--font-body);
+    background: var(--color-bg);
+    color: var(--color-text);
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:focus-visible {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 5px;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2,
+h3 {
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    font-size: clamp(1.8rem, 4vw, 2.7rem);
+}
+
+p {
+    color: var(--color-muted);
+}
+
+section {
+    scroll-margin-top: 5rem;
+}
+
+/* =================================
+   3. HEADER & NAVIGATION
+================================= */
+.site-header {
+    width: min(100% - 2.5rem, var(--container-width));
+    margin-inline: auto;
+    min-height: 88px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+}
+
+.logo {
+    color: var(--color-primary);
+    font-size: 1.35rem;
+    font-weight: 800;
+}
+
+.navigation {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.navigation a {
+    color: var(--color-muted);
+    transition: color 200ms ease;
+}
+
+.navigation a:hover {
+    color: var(--color-primary);
+}
+
+.header-button,
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0.75rem 1.25rem;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    transition: transform 200ms ease, background 200ms ease;
+}
+
+.header-button,
+.button-primary {
+    background: var(--color-primary);
+    color: #07150e;
+}
+
+.header-button:hover,
+.button-primary:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+}
+
+/* =================================
+   4. HERO SECTION
+================================= */
+.hero {
+    width: min(100% - 2.5rem, var(--container-width));
+    margin-inline: auto;
+    padding-block: clamp(5rem, 12vw, 9rem);
+    text-align: center;
+}
+
+.hero-label {
+    color: var(--color-primary);
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.18em;
+}
+
+.hero h1 {
+    max-width: 900px;
+    margin: 1.5rem auto;
+    animation: fade-up 700ms ease both;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 0 auto;
+    font-size: clamp(1rem, 2vw, 1.2rem);
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+}
+
+.button-secondary {
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+}
+
+.button-secondary:hover {
+    background: var(--color-surface);
+}
+
+/* =================================
+   5. FEATURES SECTION
+================================= */
+.features,
+.contact {
+    width: min(100% - 2.5rem, var(--container-width));
+    margin-inline: auto;
+    padding-block: var(--space-6);
+    text-align: center;
+}
+
+.features > p,
+.contact > p {
+    margin-bottom: var(--space-4);
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-5);
+    text-align: left;
+}
+
+.feature-card {
+    padding: var(--space-4);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    transition: transform 200ms ease, border-color 200ms ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary);
+}
+
+.feature-card h3 {
+    color: var(--color-primary);
+}
+
+/* =================================
+   6. CONTACT & FOOTER
+================================= */
+.contact {
+    margin-bottom: var(--space-5);
+    padding: clamp(2rem, 6vw, 4rem);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+}
+
+.site-footer {
+    padding: var(--space-3);
+    border-top: 1px solid var(--color-border);
+    text-align: center;
+}
+
+.site-footer p {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+/* =================================
+   7. LOAD-IN ANIMATION
+================================= */
+@keyframes fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(18px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* =================================
+   8. RESPONSIVE DESIGN
+================================= */
+@media (max-width: 760px) {
+    .site-header {
+        padding-block: var(--space-2);
+        flex-wrap: wrap;
+    }
+
+    .navigation {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: var(--space-2);
+    }
+
+    .header-button {
+        padding-inline: 0.8rem;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding-block: var(--space-6);
+    }
+}
+
+/* =================================
+   9. PRINT STYLESHEET
+================================= */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .site-header,
+    .navigation,
+    .header-button,
+    .hero-actions,
+    .button {
+        display: none;
+    }
+
+    .hero,
+    .features,
+    .contact {
+        width: 100%;
+        padding: 1rem 0;
+        margin: 0;
+        color: black;
+        background: white;
+        border: 0;
+        box-shadow: none;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    .feature-card h3 {
+        color: black;
+    }
+
+    .feature-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .feature-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #999;
+    }
+}
+/* MOBILE MENU - CSS CHECKBOX HACK */
+
+.menu-toggle {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
+
+.menu-button {
+    display: none;
+    cursor: pointer;
+}
+
+.menu-button span:not(.menu-label) {
+    display: block;
+    width: 24px;
+    height: 2px;
+    margin: 5px 0;
+    background: var(--color-primary);
+}
+
+.menu-label {
+    font-size: 0.85rem;
+}
+
+.menu-toggle:focus-visible + .menu-button {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 5px;
+}
+
+@media (max-width: 760px) {
+    .site-header {
+        position: relative;
+    }
+
+    .menu-button {
+        display: block;
+        order: 2;
+    }
+
+    .navigation {
+        display: none;
+        order: 4;
+        width: 100%;
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--space-2);
+        background: var(--color-surface);
+        border: 1px solid var(--color-border);
+        border-radius: var(--radius-md);
+    }
+
+    .navigation a {
+        display: block;
+        padding: 0.75rem;
+    }
+
+    .menu-toggle:checked ~ .navigation {
+        display: flex;
+    }
+
+    .header-button {
+        order: 3;
+    }
+}
